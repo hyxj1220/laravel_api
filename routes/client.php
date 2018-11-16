@@ -11,6 +11,4 @@
  |
  */
 
-Route::get('/', function (Request $request) {
-    die('dd');
-});
+Route::get('/', 'HomeController@index')->name('home');

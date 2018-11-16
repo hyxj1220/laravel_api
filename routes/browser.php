@@ -13,6 +13,5 @@
 
 
 Route::get('/', function (Request $request) {
-    die('dd');
+    die('browser');
 });
-    
