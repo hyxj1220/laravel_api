@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -15,6 +16,10 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+    protected $backendNamespace;
+    protected $browserNamespace;
+    protected $clientNamespace;
+    protected $currentDomain; 
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -24,6 +29,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        
+        $this->backendNamespace = 'App\Http\Controllers\Backend';
+        $this->browserNamespace = 'App\Http\Controllers\Browser';
+        $this->clientNamespace = 'App\Http\Controllers\Client';
+        $this->currentDomain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "";
 
         parent::boot();
     }
@@ -33,11 +43,48 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function map()
+    public function map(Router $router)
     {
-        $this->mapApiRoutes();
+//         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
+//         $this->mapWebRoutes();
+        $backendUrl = config('route.backend_url');
+        $browserUrl = config('route.browser_url');
+        $clientUrl = config('route.client_url');
+        switch ($this->currentDomain) {
+            case $clientUrl:
+                // client路由
+                $router->group([
+                'domain' => $clientUrl,
+                'namespace' => $this->clientNamespace],
+                function ($router) {
+                    require base_path('routes/client.php');
+                }
+                );
+                
+                break;
+            case $backendUrl:
+                // 后端路由
+                $router->group([
+                'domain' => $backendUrl,
+                'namespace' => $this->backendNamespace],
+                function ($router) {
+                    require base_path('routes/backend.php');
+                }
+                );
+                break;
+            default:
+                // 前端路由
+                $router->group([
+                'domain' => $browserUrl,
+                'namespace' => $this->browserNamespace],
+                function ($router) {
+                    require base_path('routes/browser.php');
+                }
+                );
+                
+                break;
+        }
 
         //
     }
