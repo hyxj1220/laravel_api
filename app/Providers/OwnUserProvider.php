@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Auth\EloquentUserProvider;
-use Illuminate\Contracts\Auth\ Authenticatable as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as Authenticatable;
 
 class OwnUserProvider extends EloquentUserProvider
 {
@@ -16,8 +16,6 @@ class OwnUserProvider extends EloquentUserProvider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        $plain = $credentials['password'];
-        $authPassword = $user->getAuthPassword();
-        return md5($authPassword['salt'] . $plain) == $authPassword['password'];
+        return md5($user->getAuthSalt() . $credentials['password']) == $user->getAuthPassword();
     }
 }

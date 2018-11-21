@@ -24,7 +24,7 @@ return [
     ],
 
     'api_param'=>[
-        '/basic/soft/config' => [
+        'basic/soft/config' => [
             'ucode'    => ['name' => '用户id', 'ismust' => true],
         ],
     ],

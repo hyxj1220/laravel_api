@@ -10,7 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected  $table = 'own_user';
+    protected $table = 'own_user';
+    protected $primaryKey = 'uid';
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +34,11 @@ class User extends Authenticatable
 
     public function getAuthPassword()
     {
-        return ['password' => $this->attributes['password'], 'salt' => $this->attributes['salt']];
+        return $this->attributes['password'];
+    }
+
+    public function getAuthSalt()
+    {
+        return $this->attributes['salt'];
     }
 }

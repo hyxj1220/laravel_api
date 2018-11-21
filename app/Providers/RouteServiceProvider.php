@@ -33,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider
         //
         $v = request()->v; 
         $v = empty($v) ? 'V1' : "V{$v}";
+        request()->v = strtolower($v);
         $this->backendNamespace = 'App\Http\Controllers\Backend';
         $this->browserNamespace = 'App\Http\Controllers\Browser';
         $this->clientNamespace = "App\Http\Controllers\Client\\{$v}";

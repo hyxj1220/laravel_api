@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Browser;
+namespace App\Http\Controllers\Client\V1;
 
 use Illuminate\Http\Request;
 use Auth;
