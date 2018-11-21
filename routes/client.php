@@ -11,6 +11,8 @@
  |
  */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::group(['middleware'=>['client_auth']],function (){
+    Route::any('/','HomeController@index');
 
-Route::get('/', 'HomeController@index')->name('login');
+    Route::any('/basic/soft/config','HomeController@index');
+});

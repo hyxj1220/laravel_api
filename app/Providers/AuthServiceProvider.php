@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        \Auth::provider('own-user', function ($app, $config) {
+            return new OwnUserProvider($this->app['hash'], $config['model']);
+        });
     }
 }

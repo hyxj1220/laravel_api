@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Browser;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as FrameController;

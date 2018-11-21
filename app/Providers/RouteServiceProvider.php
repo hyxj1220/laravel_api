@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
@@ -29,10 +31,12 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        
+        $v = request()->v; 
+        $v = empty($v) ? 'V1' : "V{$v}";
         $this->backendNamespace = 'App\Http\Controllers\Backend';
         $this->browserNamespace = 'App\Http\Controllers\Browser';
-        $this->clientNamespace = 'App\Http\Controllers\Client';
+        $this->clientNamespace = "App\Http\Controllers\Client\\{$v}";
+
         $this->currentDomain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "";
 
         parent::boot();
@@ -76,6 +80,7 @@ class RouteServiceProvider extends ServiceProvider
             default:
                 // 前端路由
                 $router->group([
+                'middleware'=>['web'],
                 'domain' => $browserUrl,
                 'namespace' => $this->browserNamespace],
                 function ($router) {
