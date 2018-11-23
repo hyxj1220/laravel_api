@@ -12,6 +12,9 @@ class User extends Authenticatable
 
     protected $table = 'own_user';
     protected $primaryKey = 'uid';
+    
+    // 自定义remember_me字段
+    // protected $rememberTokenName = 'remember_token';
 
     /**
      * The attributes that are mass assignable.

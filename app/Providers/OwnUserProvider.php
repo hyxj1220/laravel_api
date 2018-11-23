@@ -18,4 +18,15 @@ class OwnUserProvider extends EloquentUserProvider
     {
         return md5($user->getAuthSalt() . $credentials['password']) == $user->getAuthPassword();
     }
+
+
+    public function retrieveById($identifier)
+    {
+        $user_auth = session('user_auth' . $identifier);
+        if ($user_auth){
+            return $user_auth;
+        }
+
+        return parent::retrieveById($identifier);
+    }
 }

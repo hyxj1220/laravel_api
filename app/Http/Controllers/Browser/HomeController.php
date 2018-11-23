@@ -24,6 +24,11 @@ class HomeController extends BaseController
      */
     public function index(Request $request)
     {
-        dd('dd');
+       return view('home');
+    }
+
+    public function xujian(Request $request)
+    {
+       return $request->user();
     }
 }
