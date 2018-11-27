@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use Log;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -27,6 +28,9 @@ class LogSuccessfulLogin
     public function handle(Login $event)
     {
         //
-        var_dump($event);
+        
+        session(['user_auth'=>$event->user]);
+
+        
     }
 }

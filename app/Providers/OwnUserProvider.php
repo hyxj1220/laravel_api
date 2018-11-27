@@ -20,9 +20,12 @@ class OwnUserProvider extends EloquentUserProvider
     }
 
 
+    /**
+    基于自己的业务逻辑重写
+    */
     public function retrieveById($identifier)
     {
-        $user_auth = session('user_auth' . $identifier);
+        $user_auth = session('user_auth');
         if ($user_auth){
             return $user_auth;
         }
