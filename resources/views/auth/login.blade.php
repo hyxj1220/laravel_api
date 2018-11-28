@@ -22,6 +22,22 @@
                                         <strong>{{ $errors->first('mobile') }}</strong>
                                     </span>
                                 @endif
+
+                                
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+                                @if ($errors->has('user_expired'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('user_expired') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
