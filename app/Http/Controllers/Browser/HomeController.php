@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Browser;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class HomeController extends BaseController
 {
@@ -29,6 +29,13 @@ class HomeController extends BaseController
 
     public function xujian(Request $request)
     {
+
+        
        return $request->user();
+    }
+
+    public function __destruct()
+    {
+        
     }
 }

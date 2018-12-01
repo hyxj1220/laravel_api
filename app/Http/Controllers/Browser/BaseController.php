@@ -14,6 +14,6 @@ class BaseController extends FrameController
      */
     public function __construct()
     {
-//         $this->middleware('auth');
+         
     }
 }

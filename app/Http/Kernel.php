@@ -47,6 +47,9 @@ class Kernel extends HttpKernel
 
         'client_auth'=>[
             \App\Http\Middleware\ClientAuth::class,
+        ],
+        'web_auth'=>[
+            \App\Http\Middleware\WebAuth::class,
         ]
     ];
 

@@ -20,4 +20,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/xujian', 'HomeController@xujian')->middleware('auth');
+
+Route::group(['middleware' => ['auth', 'web_auth']], function () {
+    Route::get('xujian', 'HomeController@xujian');
+    Route::get('user/info/index', 'HomeController@xujian');
+});
+
+
+

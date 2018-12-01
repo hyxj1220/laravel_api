@@ -18,7 +18,7 @@ class OwnUserProvider extends EloquentUserProvider
      public $auth_user_session = [
         'uid','airport_iata','mobile','salt','password',
         'department_1','department_2','department_3',
-        'app_id', 'ustatus','created_at', 'expiry_date'
+        'app_id', 'ustatus','created_at', 'expiry_date','remember_token'
     ];
 
     public function validateCredentials(Authenticatable $user, array $credentials)
@@ -49,7 +49,7 @@ class OwnUserProvider extends EloquentUserProvider
     {
         $model = $this->createModel();
 
-        $model = $this->is_expired($model->where($model->getAuthIdentifierName(), $identifier)->first());
+        $model = $this->is_expired($model->where($model->getAuthIdentifierName(), $identifier)->first($this->auth_user_session));
 
         if (! $model) {
             return null;

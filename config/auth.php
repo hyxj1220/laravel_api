@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'own-user',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [
