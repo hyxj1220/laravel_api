@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Client\V1;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as FrameController;
 
 class BaseController extends FrameController

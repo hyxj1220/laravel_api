@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Browser;
 
-use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends BaseController
